@@ -1,0 +1,929 @@
+{
+    "restaurante": {
+        "nombre": "McDonald's Plaza Castilla",
+        "plataforma": "Uber Eats",
+        "direccion": "Plaza Castilla, Madrid",
+        "productos": [
+            {
+                "nombre": "Menú4You Doble Mediano",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Menú4You Doble Mediano",
+                "precio": 4.95,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Menú4You Triple Mediano",
+                "precio": 5.95,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "4 McNuggets® de pollo",
+                "precio": 5.1,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "McExtreme™ Bacon",
+                "precio": 7.99,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Cuarto de Libra con Queso",
+                "precio": 7.7,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Menú4You Simple Mediano",
+                "precio": 3.95,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "4 Alitas de pollo",
+                "precio": 4.3,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "9 McNuggets® de pollo",
+                "precio": 7.85,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Cuarto de Libra Doble",
+                "precio": 9.45,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Patatas Fritas Grandes",
+                "precio": 5.6,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Hamburguesa con Queso",
+                "precio": 4.7,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "6 McNuggets® de pollo",
+                "precio": 5.65,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "McFlurry® Oreo con Chocolate",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "McRoyal Deluxe®",
+                "precio": 7.1,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Sundae Chocolate",
+                "precio": 4.01,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Top Fries Bacon & Cheese Individual",
+                "precio": 6.1,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "Combo 4 U.",
+                "precio": 3.95,
+                "fecha": "2025-04-10 16:14:21"
+            },
+            {
+                "nombre": "McWrap® CBO",
+                "precio": 7.9,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McFlurry® Lotus Biscoff®",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Cheeseburger",
+                "precio": 1.95,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Cheeseburger",
+                "precio": 1.95,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McPollo 2x1",
+                "precio": 7.1,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McPollo 2x1",
+                "precio": 7.1,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Big Mac®",
+                "precio": 7.95,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Big Mac®",
+                "precio": 7.8,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "CBO®",
+                "precio": 7.95,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McExtreme™ Bacon Doble",
+                "precio": 9.74,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "ShareBox® 10 Alitas + 10 McNuggets®",
+                "precio": 16.2,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McFlurry® Oreo con Chocolate Blanco",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "ShareBox® 25 McNuggets®",
+                "precio": 15.45,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Menú Mediano \"Una película de Minecraft\"",
+                "precio": 11.1,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McCrispy Original",
+                "precio": 7.95,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Menú Mediano \"Una película de Minecraft\"",
+                "precio": 17.39,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Menú Mediano \"Una película de Minecraft\"",
+                "precio": 11.1,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McPollo 2x1",
+                "precio": 7.1,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Menú Completo Mediano McCrispy Pomodoro y Cheese Doble",
+                "precio": 17.15,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Menú Completo Mediano McCrispy Pomodoro y Cheese",
+                "precio": 15.25,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McCrispy Pomodoro y Cheese  Doble",
+                "precio": 10.59,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McCrispy Pomodoro y Cheese",
+                "precio": 8.59,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McFlurry® Filipinos Blanco",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Mini McFlurry® Filipinos Blanco",
+                "precio": 3.71,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McShaker Fries Deluxe Italian Taste Medianas",
+                "precio": 5.2,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "McShaker Fries Italian Taste Medianas",
+                "precio": 5.2,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Pack Dúo mediano",
+                "precio": 24.99,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Pack Trío mediano",
+                "precio": 39.85,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Pack Familiar mediano",
+                "precio": 28.27,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Pack Picoteo",
+                "precio": 17.39,
+                "fecha": "2025-04-10 16:14:22"
+            },
+            {
+                "nombre": "Menú4You Doble Mediano",
+                "precio": 9.4,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Menú4You Doble Mediano",
+                "precio": 4.95,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Menú4You Triple Mediano",
+                "precio": 5.95,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Cheeseburger",
+                "precio": 1.95,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Menú4You Simple Mediano",
+                "precio": 3.95,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Chicken Mayo",
+                "precio": 2.9,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Cuarto de Libra con Queso",
+                "precio": 7.7,
+                "fecha": "2025-04-10 16:14:23"
+            },
+            {
+                "nombre": "Big Mac®",
+                "precio": 7.8,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Chicken Burger BBQ",
+                "precio": 1.75,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McCrispy Original",
+                "precio": 7.95,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Hamburguesa",
+                "precio": 1.75,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McExtreme™ Bacon",
+                "precio": 7.99,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú4You Doble Mediano  + Complemento",
+                "precio": 6.45,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McRoyal Deluxe®",
+                "precio": 7.1,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú4You Triple Mediano + Complemento",
+                "precio": 7.45,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "CBO®",
+                "precio": 7.95,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McPollo®",
+                "precio": 7.1,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McWrap® CBO",
+                "precio": 7.9,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Chicken & Cheese",
+                "precio": 1.95,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "9 McNuggets® de pollo",
+                "precio": 7.85,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McExtreme™ Bacon Doble",
+                "precio": 9.74,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú4You Simple Mediano + Complemento",
+                "precio": 5.45,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Doble Cheeseburger",
+                "precio": 4.85,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Cuarto de Libra Doble",
+                "precio": 9.45,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Triple Cheeseburger",
+                "precio": 6.15,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Doble Chicken Mayo",
+                "precio": 4.85,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Triple  Chicken Mayo",
+                "precio": 6.15,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Mediano \"Una película de Minecraft\"",
+                "precio": 11.1,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano McCrispy Pomodoro y Cheese Doble",
+                "precio": 17.15,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano McCrispy Pomodoro y Cheese",
+                "precio": 15.25,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano McExtreme Tutti Pepperoni Doble",
+                "precio": 16.55,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano McExtreme Tutti Pepperoni",
+                "precio": 14.65,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano McCrispy Original",
+                "precio": 14.7,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano Doble McExtreme Pulled Pork",
+                "precio": 17.5,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano McExtreme Pulled Pork",
+                "precio": 15.6,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano Big Mac",
+                "precio": 13.95,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Menú Completo Mediano 9 McNuggets",
+                "precio": 13.9,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McCrispy Pomodoro y Cheese  Doble",
+                "precio": 10.59,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McCrispy Pomodoro y Cheese",
+                "precio": 8.59,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McExtreme Tutti Pepperoni Doble",
+                "precio": 9.74,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McExtreme Tutti Pepperoni",
+                "precio": 7.99,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McCrispy Original Doble",
+                "precio": 9.99,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McExtreme Doble Pulled Pork",
+                "precio": 11.15,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "McExtreme Pulled Pork",
+                "precio": 9.4,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Pack Dúo mediano",
+                "precio": 17.39,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Pack Dúo mediano",
+                "precio": 24.99,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Pack Trío mediano",
+                "precio": 39.85,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Pack Familiar mediano",
+                "precio": 28.27,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "Pack Picoteo",
+                "precio": 17.39,
+                "fecha": "2025-04-10 16:14:24"
+            },
+            {
+                "nombre": "4 McNuggets® de pollo",
+                "precio": 5.3,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "4 McNuggets® de pollo",
+                "precio": 4.7,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Hamburguesa con Queso",
+                "precio": 4.7,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Hamburguesa",
+                "precio": 4.7,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Chicken Burger Kids",
+                "precio": 4.7,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "9 Chicken McBites®",
+                "precio": 4.7,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "6 McNuggets® de pollo",
+                "precio": 5.3,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Patatas Fritas Pequeñas",
+                "precio": 0.75,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Patatas Fritas Pequeñas",
+                "precio": 1.75,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "9 McNuggets® de pollo",
+                "precio": 7.85,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "4 Alitas de pollo",
+                "precio": 4.3,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "6 McNuggets® de pollo",
+                "precio": 5.65,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Patatas Fritas Grandes",
+                "precio": 5.6,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Patatas Fritas Medianas",
+                "precio": 4.95,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "ShareBox® 10 Alitas + 10 McNuggets®",
+                "precio": 16.2,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "20 Chicken McBites®",
+                "precio": 5.0,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Patatas Deluxe Grandes",
+                "precio": 5.6,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Top Fries Bacon & Cheese para Compartir",
+                "precio": 7.0,
+                "fecha": "2025-04-10 16:14:25"
+            },
+            {
+                "nombre": "Patatas Deluxe Medianas",
+                "precio": 4.95,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "4 McNuggets® de pollo",
+                "precio": 5.1,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Top Fries Bacon & Cheese Individual",
+                "precio": 6.1,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "ShareBox® 25 McNuggets®",
+                "precio": 15.45,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Top Fries Bacon & Cheese Deluxe para Compartir",
+                "precio": 7.0,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Top Fries Bacon & Cheese Deluxe Individual",
+                "precio": 6.1,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Cherritos",
+                "precio": 2.05,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Gazpacho",
+                "precio": 2.75,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "McShaker Fries Italian Taste Medianas",
+                "precio": 5.2,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "McShaker Fries Deluxe Italian Taste Medianas",
+                "precio": 5.2,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "9 Chicken McBites®",
+                "precio": 2.15,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Sazonador Italian Taste+Bolsa",
+                "precio": 0.75,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Coca-Cola® Mediana 40cl",
+                "precio": 3.7,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Coca-Cola® Mediana 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Fanta® Naranja Zero Mediana 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Agua 50cl",
+                "precio": 2.9,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Coca-Cola® Zero Zero Med. 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Zumo Naranja",
+                "precio": 3.8,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Coca-Cola® Zero Mediana 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Lipton Ice Tea® Mediano 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Zumo de Manzana Tropicana",
+                "precio": 3.8,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Gazpacho",
+                "precio": 2.75,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Sprite® Zero Mediano 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Aquarius® Zero Mediano 40cl",
+                "precio": 4.21,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Cerveza 0,0 Tostada (Tamaño único)",
+                "precio": 3.7,
+                "fecha": "2025-04-10 16:14:26"
+            },
+            {
+                "nombre": "Apple Pie",
+                "precio": 5.1,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Apple Pie",
+                "precio": 1.2,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Oreo con Chocolate",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Kit Kat con Caramelo",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Oreo con Chocolate Blanco",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Oreo con Caramelo",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Kit Kat con Chocolate Blanco",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Sundae Caramelo",
+                "precio": 4.01,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Sundae Chocolate",
+                "precio": 4.01,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Mini McFlurry® Oreo",
+                "precio": 3.71,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Sundae Chocolate blanco",
+                "precio": 4.01,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Kit Kat con Chocolate",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Mini McFlurry® KitKat",
+                "precio": 3.71,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Manzana",
+                "precio": 2.0,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Danonino® Street Fresa",
+                "precio": 1.95,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Piña",
+                "precio": 2.2,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Filipinos Blanco",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Mini McFlurry® Filipinos Blanco",
+                "precio": 3.71,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McFlurry® Lotus Biscoff®",
+                "precio": 4.76,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Mini McFlurry® Lotus Biscoff®",
+                "precio": 3.71,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Menú Sundae + Apple Pie",
+                "precio": 5.1,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "De la Huerta (Tamaño único)",
+                "precio": 11.25,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "De la Huerta (Tamaño único)",
+                "precio": 4.06,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Menú Ensalada César",
+                "precio": 10.45,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Menú Ensalada Honey Mustard",
+                "precio": 11.25,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McPop® Chocolate Blanco",
+                "precio": 1.25,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McPop® Chocolate Blanco",
+                "precio": 1.25,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Cookie Chocolate",
+                "precio": 2.35,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McPop® Nocilla",
+                "precio": 1.25,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Combo 4 U.",
+                "precio": 3.95,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Croissant",
+                "precio": 2.35,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "Combo 10 U.",
+                "precio": 8.95,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McDalena Chocolate",
+                "precio": 3.1,
+                "fecha": "2025-04-10 16:14:27"
+            },
+            {
+                "nombre": "McPop® Lotus Biscoff",
+                "precio": 1.25,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Extra Salsa Deluxe",
+                "precio": 0.75,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Extra Salsa Deluxe",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Extra Salsa Buffalo",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Extra Salsa Barbacoa",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Extra Salsa Agridulce",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Extra salsa fina",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Salsa César",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Aceite y Vinagre",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Salsa Honey Mustard",
+                "precio": 0.65,
+                "fecha": "2025-04-10 16:14:28"
+            },
+            {
+                "nombre": "Sazonador Italian Taste+Bolsa",
+                "precio": 0.75,
+                "fecha": "2025-04-10 16:14:28"
+            }
+        ]
+    }
+}
