@@ -1,0 +1,54 @@
+Acivar el entorno virtual
+venv\Scripts\activate
+
+Conectarse al server MySQL
+& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p
+
+
+Iniciar server Backend 
+node .\server.js
+
+Iniciar React
+npm run dev
+
+
+
+Script BBDD
+--------------------------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS comparador_de_precios;
+USE comparador_de_precios;
+
+
+CREATE TABLE Restaurante (
+    id_restaurante INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE Productos (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    id_restaurante INT NOT NULL,
+    FOREIGN KEY (id_restaurante) REFERENCES Restaurante(id_restaurante) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Precio (
+    id_precio INT AUTO_INCREMENT PRIMARY KEY,
+    precio DECIMAL(5,2) NOT NULL,
+    id_producto INT NOT NULL,
+    fecha DATETIME NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE,
+    CONSTRAINT unique_producto_precio UNIQUE (id_producto) -- Garantiza relación 1:1
+);
+
+
+CREATE TABLE Historico (
+    id_historico INT AUTO_INCREMENT PRIMARY KEY,
+    precio DECIMAL(5,2) NOT NULL,
+    id_producto INT NOT NULL,
+    fecha DATETIME NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE
+);
+
+---------------------------------------------------------------------------------------------------
