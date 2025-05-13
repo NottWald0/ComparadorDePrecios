@@ -1,65 +1,74 @@
-import json
-import pymysql
-from datetime import datetime
+import json  
+import pymysql  
+from datetime import datetime 
 
-# Conexión a MySQL
-connection = pymysql.connect(
+# Configuro la conexión a MySQL
+# Uso localhost porque la base de datos es local
+conexion = pymysql.connect(
     host="localhost",
-    user="root",  # Cambia por tu usuario si no es root
-    password="root",  # Cambia por tu contraseña de MySQL
-    database="comparador_de_precios"
+    user="root",  
+    password="root",  
+    database="comparador_de_precios"  
 )
-cursor = connection.cursor()
+cursor = conexion.cursor()  # Creo un cursor para ejecutar consultas SQL
 
-# Lee el JSON
-with open("scraped_data.json", "r", encoding="utf-8") as file:
-    datos = json.load(file)
 
-# Procesa cada restaurante
-for restaurante in datos["restaurantes"]:
-    # Inserta o verifica el restaurante
+with open("datos_extraidos.json", "r", encoding="utf-8") as archivo:
+    informacion = json.load(archivo)  # Primero leo el JSON y lo guardo en una variable
+
+# -------------------Recorro cada restaurante del JSON para procesarlo-------------------------------------
+for restaurante in informacion["restaurantes"]:
+    # Compruebo si el restaurante ya esta en la base de datos
     cursor.execute("SELECT id_restaurante FROM Restaurante WHERE nombre = %s", (restaurante["nombre"],))
-    result = cursor.fetchone()
-    if result:
-        id_restaurante = result[0]
-    else:
-        cursor.execute("INSERT INTO Restaurante (nombre) VALUES (%s)", (restaurante["nombre"],))
-        id_restaurante = cursor.lastrowid
+    resultado = cursor.fetchone()  
 
-    # Procesa los productos del restaurante
+    # Si el restaurante ya existe, uso su ID; si no, lo inserto y uso su nuevo ID
+    if resultado:
+        id_restaurante = resultado[0]  # El ID del restaurante ya existente
+    else:
+        cursor.execute("INSERT INTO Restaurante (nombre) VALUES (%s)", (restaurante["nombre"],))  # Inserto el restaurante
+        id_restaurante = cursor.lastrowid  # Obtengo el ID del restaurante  
+
+
+    # ------------------------Ahora proceso los productos del restaurante---------------------------------------
     for producto in restaurante["productos"]:
-        # Inserta o verifica el producto
+        # Compruebo si el producto ya está en la base de datos para el restaurante
         cursor.execute("SELECT id_producto FROM Productos WHERE nombre = %s AND id_restaurante = %s",
                        (producto["nombre"], id_restaurante))
-        result = cursor.fetchone()
-        if result:
-            id_producto = result[0]
+        resultado = cursor.fetchone() 
+
+        if resultado:
+            id_producto = resultado[0]  
         else:
             cursor.execute("INSERT INTO Productos (nombre, id_restaurante) VALUES (%s, %s)",
-                           (producto["nombre"], id_restaurante))
-            id_producto = cursor.lastrowid
+                           (producto["nombre"], id_restaurante))  
+            id_producto = cursor.lastrowid  
 
-        # Convierte la fecha del JSON a formato DATETIME
+        # ----------------A continuacion convierto la fecha del JSON a un formato que MySQL entienda-----------------
         fecha = datetime.strptime(producto["fecha"], "%Y-%m-%d %H:%M:%S")
 
-        # Verifica si el producto ya tiene un precio actual
+        #--------------------- Finalmente compruebo si el producto ya tiene un precio registrado-----------------------------------
         cursor.execute("SELECT id_precio, precio, fecha FROM Precio WHERE id_producto = %s", (id_producto,))
-        precio_actual = cursor.fetchone()
+        precio_actual = cursor.fetchone()  # Obtengo el precio actual, si existe
 
+        # Si el producto ya tiene un precio registrado
         if precio_actual:
-            # Si el precio cambió, guarda el precio anterior en Historico y actualiza Precio
-            if precio_actual[1] != producto["precio"]:
+            # Comparo el precio actual con el nuevo precio del JSON
+            if precio_actual[1] != producto["precio"]:  # Si el precio cambio guardo el precio anterior en la tabla Historico
                 cursor.execute("INSERT INTO Historico (id_producto, precio, fecha) VALUES (%s, %s, %s)",
                                (id_producto, precio_actual[1], precio_actual[2]))
+                # y actualizo el precio actual en la tabla Precio con el nuevo precio y fecha
                 cursor.execute("UPDATE Precio SET precio = %s, fecha = %s WHERE id_producto = %s",
                                (producto["precio"], fecha, id_producto))
         else:
-            # Si no hay precio, inserta uno nuevo
+            # Si el producto no tiene precio, inserto un nuevo precio en la tabla Precio
             cursor.execute("INSERT INTO Precio (id_producto, precio, fecha) VALUES (%s, %s, %s)",
                            (id_producto, producto["precio"], fecha))
 
-# Guarda los cambios
-connection.commit()
-connection.close()
+# Guardo todos los cambios en la base de datos
+conexion.commit()
+# Cierro la conexión a la base de datos para liberar recursos
+conexion.close()
 
-print("Datos volcados a la base de datos correctamente.")
+
+print("Datos cargados en la base de datos correctamente.")
