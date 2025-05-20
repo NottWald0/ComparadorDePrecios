@@ -1,224 +1,284 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
 import './App.css';
 
-// Componente principal de la aplicación
 function App() {
-    // Estados para manejar los datos y la interfaz
-    const [productos, setProductos] = useState([]); // Lista de productos y precios actuales
-    const [historial, setHistorial] = useState([]); // Historial de precios de un producto seleccionado
-    const [loading, setLoading] = useState(true); // Indicador de carga mientras se obtienen datos
-    const [error, setError] = useState(null); // Mensaje de error si falla una solicitud
-    const [searchTerm, setSearchTerm] = useState(''); // Término de búsqueda para filtrar productos
-    const [showModal, setShowModal] = useState(false); // Controla si el modal está visible o no
-    const [selectedProducto, setSelectedProducto] = useState(null); // Producto seleccionado para ver su historial
+  // Estados para datos y UI
+  const [productos, setProductos] = useState([]);
+  const [historial, setHistorial] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProducto, setSelectedProducto] = useState(null);
+  const [viewMode, setViewMode] = useState('tabla'); // 'tabla' o 'grafico'
 
-    // Efecto para cargar los productos al montar el componente
-    useEffect(() => {
-        setLoading(true); // Activa el estado de carga
-        // Realiza una petición GET al backend para obtener la lista de productos
-        axios.get('http://localhost:5000/api/productos')
-            .then(response => {
-                // Verifica si la respuesta es valida
-                if (Array.isArray(response.data)) {
-                    // Parseo los precios  para evitar problemas de formato
-                    const productosConPreciosNumericos = response.data.map(producto => ({
-                        ...producto,
-                        precio_actual: parseFloat(producto.precio_actual) || 0
-                    }));
-                    setProductos(productosConPreciosNumericos); // Actualiza el estado con los productos procesados
-                } else {
-                    setProductos([]); // Si no es un arreglo, establece una lista vacía
-                }
-                setLoading(false); // Desactiva el estado de carga
-            })
-            .catch(error => {
-                // Maneja errores en la petición y muestra un mensaje al usuario
-                console.error('Error al obtener los productos:', error);
-                setError('No se pudieron cargar los productos. Asegúrate de que el backend esté corriendo.');
-                setLoading(false); // Desactiva el estado de carga incluso si hay error
-            });
-    }, []); // El arreglo vacío asegura que esto solo se ejecute al montar el componente
+  // Estados para filtros
+  const [selectedRestaurants, setSelectedRestaurants] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
-    //--------------------------------------------------------------------------------------------------------------------------------------------
-    // Función para obtener y mostrar el historial de precios de un producto
-    const verHistorial = (idProducto, nombreProducto, nombreRestaurante) => {
-        setSelectedProducto({ idProducto, nombreProducto, nombreRestaurante }); // Almacena el producto seleccionado
-        setLoading(true); // Activa el estado de carga
-        // Petición GET al backend para obtener el historial del producto
-        axios.get(`http://localhost:5000/api/historico/${idProducto}`)
-            .then(response => {
-                if (Array.isArray(response.data)) {
-                    // Convierte los precios históricos a números flotantes
-                    const historialConPreciosNumericos = response.data.map(registro => ({
-                        ...registro,
-                        precio_historico: parseFloat(registro.precio_historico) || 0
-                    }));
-                    setHistorial(historialConPreciosNumericos); // Actualiza el estado con el historial
-                } else {
-                    setHistorial([]); // Si no es un arreglo, establece una lista vacía
-                }
-                setShowModal(true); // Muestra el modal con el historial
-                setLoading(false); // Desactiva el estado de carga
-            })
-            .catch(error => {
-                // Maneja errores y muestra un mensaje al usuario
-                console.error('Error al obtener el historial:', error);
-                setError('No se pudo cargar el historial.');
-                setLoading(false); // Desactiva el estado de carga
-            });
-    };
+  // Carga inicial de productos
+  useEffect(() => {
+    setLoading(true);
+    axios.get('http://localhost:5000/api/productos')
+      .then(response => {
+        const datos = Array.isArray(response.data)
+          ? response.data.map(p => ({
+              ...p,
+              precio_actual: parseFloat(p.precio_actual) || 0
+            }))
+          : [];
+        setProductos(datos);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setError('No se pudieron cargar los productos.');
+        setLoading(false);
+      });
+  }, []);
 
-    //--------------------------------------------------------------------------------------------------------------------------------------------
-    // Función para cerrar el modal y limpiar datos relacionados
-    const cerrarModal = () => {
-        setShowModal(false); // Oculta el modal
-        setHistorial([]); // Limpia el historial del estado
-        setSelectedProducto(null); // Elimina el producto seleccionado
-    };
-
-    // Crea una lista única de restaurantes a partir de los productos
+  // Inicializar filtros tras cargar productos
+  useEffect(() => {
     const restaurantes = [...new Set(productos.map(p => p.nombre_restaurante))];
-
-    // Filtra los nombres de productos únicos según el término de búsqueda
-    const productosUnicos = [...new Set(productos.map(p => p.nombre_producto))].filter(nombre =>
-        nombre.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    // Determina si un precio es el más bajo para un producto entre todos los restaurantes
-    const esPrecioMasBajo = (productoNombre, restaurante) => {
-        // Filtra los productos con el mismo nombre
-        const productosDeEsteTipo = productos.filter(
-            p => p.nombre_producto === productoNombre
-        );
-        // Extrae los precios válidos 
-        const precios = productosDeEsteTipo
-            .map(p => p.precio_actual)
-            .filter(precio => typeof precio === 'number' && precio > 0);
-        if (precios.length === 0) return false; // No hay precios válidos para comparar
-        const precioMinimo = Math.min(...precios); // Encuentra el precio más bajo
-        // Busca el precio del producto en el restaurante especificado
-        const producto = productos.find(
-            p => p.nombre_restaurante === restaurante && p.nombre_producto === productoNombre
-        );
-        const precioActual = producto ? producto.precio_actual : null;
-        return precioActual === precioMinimo; // Devuelve true si es el precio más bajo
-    };
-
-    // Renderizado condicional mientras se cargan los datos
-    if (loading) {
-        return <div>Cargando...</div>; // Muestra un mensaje de carga
+    const productosUnicos = [...new Set(productos.map(p => p.nombre_producto))];
+    if (!selectedRestaurants.length && restaurantes.length) {
+      setSelectedRestaurants(restaurantes);
     }
-
-    // Renderizado condicional si hay un error
-    if (error) {
-        return <div style={{ color: 'red' }}>{error}</div>; // Muestra el error en rojo
+    if (!selectedProducts.length && productosUnicos.length) {
+      setSelectedProducts(productosUnicos);
     }
+  }, [productos]);
 
-    // Renderizado principal de la interfaz
-    return (
-        <div className="App">
-            <h1>Comparador de Precios - McDonald's Madrid</h1>
+  // Función para obtener historial y abrir modal
+  const verHistorial = (idProducto, nombreProducto, nombreRestaurante) => {
+    setSelectedProducto({ idProducto, nombreProducto, nombreRestaurante });
+    setLoading(true);
+    axios.get(`http://localhost:5000/api/historico/${idProducto}`)
+  .then(response => {
+    const datos = Array.isArray(response.data)
+      ? response.data.map(r => ({
+          fecha: r.fecha_historico,
+          precio: parseFloat(r.precio_historico) || 0
+        }))
+      : [];
 
-            {/* Campo de búsqueda para filtrar productos */}
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Buscar producto..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el término de búsqueda al escribir
-                />
+    // Ordena de más antiguo a más reciente:
+    datos.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+
+    setHistorial(datos);
+    setViewMode('tabla');
+    setShowModal(true);
+    setLoading(false);
+  })
+  };
+
+  // Cerrar modal
+  const cerrarModal = () => {
+    setShowModal(false);
+    setHistorial([]);
+    setSelectedProducto(null);
+  };
+
+  // Datos únicos para filtros
+  const restaurantes = [...new Set(productos.map(p => p.nombre_restaurante))];
+  const productosUnicos = [...new Set(productos.map(p => p.nombre_producto))];
+
+  // Aplicar filtros y búsqueda
+  const restaurantesFiltrados = restaurantes.filter(r => selectedRestaurants.includes(r));
+  const productosFiltrados = productosUnicos
+    .filter(p => selectedProducts.includes(p))
+    .filter(p => p.toLowerCase().includes(searchTerm.toLowerCase()));
+
+  // Determinar precio más bajo
+  const esPrecioMasBajo = (nombre, rest) => {
+    const mismos = productos.filter(p => p.nombre_producto === nombre);
+    const precios = mismos.map(p => p.precio_actual).filter(v => v > 0);
+    if (!precios.length) return false;
+    const min = Math.min(...precios);
+    const prod = mismos.find(p => p.nombre_restaurante === rest);
+    return prod && prod.precio_actual === min;
+  };
+
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+
+  return (
+    <div className="App">
+      <h1>Comparador de Precios - McDonald's Madrid</h1>
+
+      {/* Modal emergente de Historial */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Historial - {selectedProducto.nombreProducto} ({selectedProducto.nombreRestaurante})</h2>
+            <div className="hist-controls">
+              <button
+                className={viewMode === 'tabla' ? 'active' : ''}
+                onClick={() => setViewMode('tabla')}
+              >Ver Tabla</button>
+              <button
+                className={viewMode === 'grafico' ? 'active' : ''}
+                onClick={() => setViewMode('grafico')}
+              >Ver Gráfico</button>
             </div>
-
-            <div className="main-container">
-                {/* Tabla de precios con restaurantes como columnas y productos como filas */}
-                <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Producto</th> {/* Columna para los nombres de productos */}
-                                {restaurantes.map((restaurante, index) => (
-                                    <th key={index}>{restaurante}</th> // Columnas con nombres de restaurantes
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {productosUnicos.map((productoNombre, index) => (
-                                <tr key={index}>
-                                    <td>{productoNombre}</td> {/* Nombre del producto en la fila */}
-                                    {restaurantes.map((restaurante, idx) => {
-                                        // Busca el producto en el restaurante actual
-                                        const producto = productos.find(
-                                            p => p.nombre_restaurante === restaurante && p.nombre_producto === productoNombre
-                                        );
-                                        return (
-                                            <td key={idx}>
-                                                {producto ? (
-                                                    // Botón con el precio, resaltado si es el más bajo
-                                                    <button
-                                                        className={`price-button ${
-                                                            esPrecioMasBajo(productoNombre, restaurante)
-                                                                ? 'precio-mas-bajo'
-                                                                : ''
-                                                        }`}
-                                                        onClick={() =>
-                                                            verHistorial(
-                                                                producto.id_producto,
-                                                                producto.nombre_producto,
-                                                                producto.nombre_restaurante
-                                                            )
-                                                        } // Muestra el historial al hacer clic
-                                                    >
-                                                        {producto.precio_actual.toFixed(2)} € {/* Precio formateado */}
-                                                    </button>
-                                                ) : (
-                                                    '-' // Muestra "-" si no hay precio disponible
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {/* Modal para mostrar el historial de precios */}
-            {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <h2>
-                            Historial de Precios - {selectedProducto?.nombre_producto} ({selectedProducto?.nombre_restaurante})
-                        </h2> {/* Título con el nombre del producto y restaurante */}
-                        {historial.length === 0 ? (
-                            <p>No hay datos históricos disponibles.</p> // Mensaje si no hay historial
-                        ) : (
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Precio (€)</th>
-                                        <th>Fecha</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {historial.map((registro, index) => (
-                                        <tr key={index}>
-                                            <td>{registro.precio_historico.toFixed(2)}</td> {/* Precio histórico formateado */}
-                                            <td>{new Date(registro.fecha_historico).toLocaleString()}</td> {/* Fecha formateada */}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        )}
-                        <button className="close-button" onClick={cerrarModal}>
-                            Cerrar
-                        </button> {/* Botón para cerrar el modal */}
-                    </div>
-                </div>
+            {viewMode === 'tabla' ? (
+              <table className="hist-table">
+                <thead>
+                  <tr><th>Fecha</th><th>Precio (€)</th></tr>
+                </thead>
+                <tbody>
+                  {historial.map((h, i) => (
+                    <tr key={i}>
+                      <td>{new Date(h.fecha).toLocaleString()}</td>
+                      <td>{h.precio.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={250}>
+                  <LineChart data={historial} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="fecha" tickFormatter={t => new Date(t).toLocaleDateString()} />
+                    <YAxis />
+                    <Tooltip labelFormatter={l => new Date(l).toLocaleString()} />
+                    <Line type="monotone" dataKey="precio" stroke="#C8102E" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             )}
+            <button className="close-button" onClick={cerrarModal}>Cerrar</button>
+          </div>
         </div>
-    );
+      )}
+
+       {/* Filtros en desplegable */}
+<div className="filters">
+  <details className="filter-group">
+    <summary>Filtrar Restaurantes</summary>
+    <label className="dropdown-item" style={{ fontWeight: 'bold' }}>
+      <input
+        type="checkbox"
+        checked={selectedRestaurants.length === restaurantes.length && restaurantes.length > 0}
+        onChange={e => {
+          if (e.target.checked) {
+            setSelectedRestaurants(restaurantes);
+          } else {
+            setSelectedRestaurants([]);
+          }
+        }}
+      /> Seleccionar todo
+    </label>
+    {restaurantes.map((rest, i) => (
+      <label key={i} className="dropdown-item">
+        <input
+          type="checkbox"
+          value={rest}
+          checked={selectedRestaurants.includes(rest)}
+          onChange={e => {
+            const { checked, value } = e.target;
+            setSelectedRestaurants(prev => {
+              if (checked) {
+                const nuevo = [...prev, value];
+                return nuevo;
+              } else {
+                return prev.filter(r => r !== value);
+              }
+            });
+          }}
+        /> {rest}
+      </label>
+    ))}
+  </details>
+  <details className="filter-group">
+    <summary>Filtrar Productos</summary>
+    <label className="dropdown-item" style={{ fontWeight: 'bold' }}>
+      <input
+        type="checkbox"
+        checked={selectedProducts.length === productosUnicos.length && productosUnicos.length > 0}
+        onChange={e => {
+          if (e.target.checked) {
+            setSelectedProducts(productosUnicos);
+          } else {
+            setSelectedProducts([]);
+          }
+        }}
+      /> Seleccionar todo
+    </label>
+    {productosUnicos.map((prod, i) => (
+      <label key={i} className="dropdown-item">
+        <input
+          type="checkbox"
+          value={prod}
+          checked={selectedProducts.includes(prod)}
+          onChange={e => {
+            const { checked, value } = e.target;
+            setSelectedProducts(prev => {
+              if (checked) {
+                return [...prev, value];
+              } else {
+                return prev.filter(p => p !== value);
+              }
+            });
+          }}
+        /> {prod}
+      </label>
+    ))}
+  </details>
+</div>
+
+      {/* Buscador */}
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Buscar producto..."
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      {/* Tabla de precios */}
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              {restaurantesFiltrados.map((rest, idx) => <th key={idx}>{rest}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {productosFiltrados.map((prod, idx) => (
+              <tr key={idx}>
+                <td>{prod}</td>
+                {restaurantesFiltrados.map((rest, j) => {
+                  const item = productos.find(
+                    p => p.nombre_restaurante === rest && p.nombre_producto === prod
+                  );
+                  return (
+                    <td key={j}>
+                      {item ? (
+                        <button
+                          className={`price-button ${esPrecioMasBajo(prod, rest) ? 'precio-mas-bajo' : ''}`}
+                          onClick={() => verHistorial(item.id_producto, item.nombre_producto, item.nombre_restaurante)}
+                        >
+                          {item.precio_actual.toFixed(2)} €
+                        </button>
+                      ) : ('-')}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default App;
