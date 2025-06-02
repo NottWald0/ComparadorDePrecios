@@ -11,3 +11,17 @@ Scraping completado: 19/05/2025 15:45:41,48
 Scraping completado: 19/05/2025 16:03:07,29 
 Scraping completado: 19/05/2025 16:13:12,26 
 Scraping completado: 20/05/2025  1:54:34,88 
+Scraping completado: 21/05/2025 14:34:42,41 
+Scraping completado: 25/05/2025 20:19:01,18 
+Scraping completado: 27/05/2025 15:24:14,87 
+Scraping completado: 27/05/2025 15:31:02,54 
+Scraping completado: 28/05/2025 14:32:07,10 
+Scraping completado: 01/06/2025 14:32:05,79 
+Scraping completado: 02/06/2025 17:07:52,63 
+Scraping completado: 02/06/2025 17:08:58,75 
+Scraping completado: 02/06/2025 17:10:47,59 
+Scraping completado: 02/06/2025 17:11:13,22 
+Scraping completado: 02/06/2025 17:12:16,46 
+Scraping completado: 02/06/2025 17:21:15,72 
+Scraping completado: 02/06/2025 19:46:09,42 
+Scraping completado: 02/06/2025 19:49:58,06 
