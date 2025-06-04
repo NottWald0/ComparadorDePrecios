@@ -28,7 +28,7 @@ h2 {
     padding: 20px;
 }
 
-/* Contenedor de la tabla - Añadimos scroll horizontal */
+/* Contenedor de la tabla */
 .table-container {
     overflow-x: auto;
     background-color: #FFFFFF;

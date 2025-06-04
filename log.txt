@@ -25,3 +25,5 @@ Scraping completado: 02/06/2025 17:12:16,46
 Scraping completado: 02/06/2025 17:21:15,72 
 Scraping completado: 02/06/2025 19:46:09,42 
 Scraping completado: 02/06/2025 19:49:58,06 
+Scraping completado: 03/06/2025 15:21:28,74 
+Scraping completado: 04/06/2025 14:33:51,58 

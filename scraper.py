@@ -1,6 +1,3 @@
-# scraper.py
-
-# Importo las librerías necesarias
 from selenium import webdriver                          
 from selenium.webdriver.chrome.service import Service   
 from selenium.webdriver.common.by import By             
@@ -9,11 +6,11 @@ import time
 import threading                                         
 from queue import Queue                                  
 
-# Carga la lista de restaurantes desde un archivo JSON externo
+# Cargo la lista de restaurantes desde un archivo JSON externo
 with open('lista_restaurantes.json', 'r', encoding='utf-8') as f:
     lista_restaurantes = json.load(f)
 
-# Función principal que extrae productos y precios de un restaurante
+# Función que extrae productos y precios de un restaurante
 def scrape_restaurant(restaurante, resultados, lock):
     print(f"Extrayendo datos de {restaurante['nombre']} en hilo {threading.current_thread().name}...")
 
@@ -23,7 +20,7 @@ def scrape_restaurant(restaurante, resultados, lock):
 
     # Abre la página del restaurante
     navegador.get(restaurante["enlace"])
-    time.sleep(10)  # Espera a que la página cargue (ajustable)
+    time.sleep(10)  # Espera a que la página cargue para simular el comportamiento de un humano
 
     # Diccionario donde se guardarán los datos del restaurante
     datos = {
@@ -41,47 +38,48 @@ def scrape_restaurant(restaurante, resultados, lock):
             nombre = None
             precio = None
 
-            # Busca los elementos de texto dentro del <li>
+            # Busco los spans que contengan texto dentro de la lista
             spans = item.find_elements(By.CSS_SELECTOR, "span[data-testid='rich-text']")
 
             for span in spans:
                 text = span.text.strip()
-                # Si contiene '€', lo intento convertir a número
+                # Si contiene el simbolo '€', lo intento convertir a número
                 if '€' in text:
                     try:
                         precio = float(text.replace('€','').replace(',','.').strip())
                     except:
                         precio = None
-                # Si no es precio y aún no tengo nombre, lo guardo como nombre
+                # Si no es precio lo guardo como nombre
                 elif text and not precio:
                     nombre = text
 
-            # Si tengo ambos datos, los agrego a la lista
+            # Cuando tengo precio y nombre los gyuardo en la lista
             if nombre and precio is not None:
                 datos['productos'].append({
                     'nombre': nombre,
                     'precio': precio,
-                    'fecha': time.strftime("%Y-%m-%d %H:%M:%S")  # Fecha y hora actual
+                    'fecha': time.strftime("%Y-%m-%d %H:%M:%S") 
                 })
 
     except Exception as e:
         print(f"Error procesando productos en {restaurante['nombre']}: {e}")
 
     finally:
-        navegador.quit()  # Cierra el navegador después de cada restaurante
+        navegador.quit()
 
-    # Uso un lock para evitar problemas al modificar la lista compartida entre hilos
+    # Uso un lock para evitar problemas al modificar la lista compartida entre los hilos
+    # Cuando un restaurante hilo este añadiendo info a la lista, los demas no pueden modificarla
     with lock:
         resultados.append(datos)
 
 # Función que ejecuta la cola de restaurantes en hilos 
 def worker(queue, resultados, lock):
     while True:
-        restaurante = queue.get()
+        restaurante = queue.get() # Cada vez que se llama a la cole, se recibe un restaurante para procesarlo y obtener la info
         if restaurante is None:
-            queue.put(None)  # Reenvía la señal de parada a los otros hilos
+            queue.put(None) 
             break
-        scrape_restaurant(restaurante, resultados, lock)
+        scrape_restaurant(restaurante, resultados, lock) #Si la funcion
         queue.task_done()  # Marca la tarea como terminada
 
 # Punto de entrada del script
@@ -94,7 +92,7 @@ if __name__ == '__main__':
     # Carga todos los restaurantes en la cola
     for r in lista_restaurantes:
         queue.put(r)
-    queue.put(None)  # Señal de parada para los hilos
+    queue.put(None)  
 
     # Crea y lanza los hilos
     threads = []
